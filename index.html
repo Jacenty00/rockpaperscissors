@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="/home/jacek/the-odin-project/stylesheet.css">
+
+</head>
+<body>
+    <div id="container">
+        <button id="1" class="btn">Rock</button>
+        <button id="2" class="btn">Paper</button>
+        <button id="3" class="btn">Scissors</button>
+    </div>
+    <div id="display"> </div>
+        <script>
+                let playerScore = 0;
+                let computerScore = 0;
+                let gameCounter = 0;
+                var roundResult = document.createElement('p');
+                var matchResult = document.createElement('p');
+                display.appendChild(roundResult);
+                display.appendChild(matchResult);
+                function getRandomIntInclusive(min, max) {
+                    min = Math.ceil(min);
+                    max = Math.floor(max);
+                    return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
+}
+                function computerPlay () {
+                    let x = getRandomIntInclusive(1, 3)
+                    switch (x) {
+                        case 1:
+                            return 'Rock'
+                        case 2:
+                            return 'Paper'
+                        case 3:
+                            return 'Scissors'        
+                    }
+                    
+                }
+                function playRound(playerSelection, computerSelection) {
+                        let ps = playerSelection.toUpperCase()
+                        gameCounter++;
+                        if (ps === 'ROCK'){
+                            if (computerSelection == 'Rock'){
+                                return 'Tie !'
+                            }
+                            else if (computerSelection == 'Paper'){
+                                computerScore++;
+                                return 'You lose :< Paper beats rock'
+                            }
+                            else if (computerSelection == 'Scissors'){
+                                playerScore++;
+                                return 'You win !!! Rock beats Scissors'
+                            }
+                        }
+                        else if (ps === 'PAPER') {
+                            if (computerSelection == 'Paper') {
+                                return 'Tie!'
+                            }
+                            else if (computerSelection == 'Rock') {
+                                playerScore++;
+                                return 'You win ! Paper beats rock'
+                            }
+                            else if (computerSelection == 'Scissors'){
+                                computerScore++;
+                                
+                                return 'You lose :< Scissors beat Paper'
+                            }
+                        }
+                        else if (ps === 'SCISSORS') {
+                            if (computerSelection == 'Scissors') {
+                                return 'Tie'
+                            }
+                            else if (computerSelection == 'Paper') {
+                                playerScore++;
+                                return 'You win ! Scissors beat Paper'
+                            }
+                            else if (computerSelection == 'Rock') {
+                                computerScore++;
+                                return 'You lose :< Rock beats Scissors'
+                                
+                            }
+                        }
+}
+function game (string) {
+                       playerSelection = string;
+                       computerSelection = computerPlay()
+                       //playRound(playerSelection, computerSelection)
+                       roundResult.textContent = playRound(playerSelection, computerSelection);
+                       
+                   playerScore = playerScore;
+                   computerScore  = computerScore;
+                   if(gameCounter == 5){
+                   if (playerScore == computerScore) {
+                       console.log('Tie!')
+                       matchResult.textContent = 'Tie! The score is' + playerScore + ' to ' + computerScore;
+                       
+                   }
+                   else if (playerScore > computerScore) {
+                       console.log('You win ! The score is ' + playerScore + ' to ' + computerScore)
+                       matchResult.textContent = 'You win ! The score is ' + playerScore + ' to ' + computerScore;
+                   }
+                   else if (playerScore < computerScore) {
+                       console.log('You lose! The score is ' + playerScore + ' to ' + computerScore)
+                       matchResult.textContent = 'You lose ! The score is ' + playerScore + ' to ' + computerScore;
+                   }
+                }
+                }
+                
+                let playerSelection
+                let computerSelection
+                    const buttons = document.querySelectorAll('button');
+                    //console.log(buttons);
+// we use the .forEach method to iterate through each button
+                    buttons.forEach((button) => {
+
+  // and for each one we add a 'click' listener
+                    button.addEventListener('click', function(e) {
+                        console.log(this.id);
+                        if(this.id == 1){
+                            game('Rock');
+                        }
+                        else if (this.id == 2){
+                            game('Paper');
+
+                        }
+                        else {
+                            game('Scissors');
+                        }
+                        
+  });
+});
+                
+
+            </script>
+</body>
+</html>
